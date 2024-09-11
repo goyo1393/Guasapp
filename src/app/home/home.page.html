@@ -1,20 +1,74 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Guasapp</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Guasapp</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <!-- Input de Emisor en la parte superior izquierda -->
+  <div style="padding: 10px; display: flex; align-items: center;">
+    <ion-input 
+      label="Emisor" 
+      label-placement="floating" 
+      fill="outline" 
+      placeholder="Emisor Name"
+      [(ngModel)]="from"
+      style="max-width: 150px; margin-right: 10px;"
+      [disabled]="registrado"
+      >
+    </ion-input>
+    <ion-button 
+    [disabled]="from.length == 0 || registrado"
+    fill="solid" 
+    shape="round" 
+    (click)="registrarUsuario()"
+    style="border-radius: 50%; width: 40px; height: 40px; padding: 0; color: white;">
+    <ion-icon name="arrow-back-circle-outline" slot="icon-only"></ion-icon>
+  </ion-button>
+
+  </div>
+
+  <!-- Lista de Mensajes -->
+  <div style="padding: 10px;">
+    <ion-list lines="none" style="min-height: 650px;">
+      <ion-item 
+        *ngFor="let mensaje of firebaseService.mensajes.reverse()" 
+        style="--background: transparent; margin: 10px 0;">
+        <ion-label 
+          [ngClass]="{'message-bubble-left': mensaje.from === from, 'message-bubble-right': mensaje.from !== from}">
+          <div class="message-content">
+            <p>{{mensaje.from}}</p>
+            <strong>{{mensaje.message}}</strong>
+          </div>
+        </ion-label>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item lines="none" style="--background: transparent;">
+      <ion-textarea 
+        placeholder="Introduce tu mensaje..."
+        autoGrow="true"
+        [(ngModel)]="message"
+        style="border-radius: 20px; background: #fff; padding: 5px; margin-right: 10px; flex: 1; font-size: 14px; color: black;">
+      </ion-textarea>
+      <ion-button 
+        [disabled]="!message.length"
+        fill="solid" 
+        shape="round" 
+        (click)="enviar()"
+        style="border-radius: 50%; width: 40px; height: 40px; padding: 0; color: red;">
+        <ion-icon name="send" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

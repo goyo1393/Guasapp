@@ -25,3 +25,47 @@
 #container a {
   text-decoration: none;
 }
+
+.message-bubble {
+  background-color: #ffffff; // Fondo blanco
+  border-radius: 15px; // Bordes redondeados
+  padding: 10px; // Espacio interno
+  max-width: 70%; // Ancho máximo
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Sombra ligera
+  margin: 5px; // Espacio exterior entre burbujas
+  color: black;
+
+  .message-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    p {
+      margin: 0; // Sin margen en el texto
+    }
+  }
+}
+
+.message-bubble-left {
+  background-color: #ffffff; // Fondo blanco para la burbuja del mensaje
+  border-radius: 15px; // Bordes redondeados
+  padding: 10px; // Espacio interno
+  max-width: 70%; // Ancho máximo
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Sombra ligera
+  margin: 5px; // Espacio exterior entre burbujas
+  margin-right: auto; // Alinea a la izquierda
+  text-align: left; // Alinea el texto a la izquierda
+  color: black;
+}
+
+.message-bubble-right {
+  background-color: #ffffff; // Fondo verde claro para la burbuja del mensaje del usuario
+  border-radius: 15px; // Bordes redondeados
+  padding: 10px; // Espacio interno
+  max-width: 70%; // Ancho máximo
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Sombra ligera
+  margin: 5px; // Espacio exterior entre burbujas
+  margin-left: auto; // Alinea a la derecha
+  text-align: left; // Alinea el texto a la derecha
+  color: black;
+}
+
